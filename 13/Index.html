@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>html</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            ///create table
+            $("#submit").click(
+                    funcCreate =  function () {
+                var countTr = parseInt($("#tr1").val());
+                var countTd = parseInt($("#td1").val());
+                if (countTr <= 10) {
+                    if (countTd <= 10) {
+                        $('#outputTable').html("<table class='t1' ></table>");
+                        for (var i = 1; i <= countTr; i++) {
+                            $('#outputTable .t1').append("<tr></tr>");
+                            for (var n = 1; n <= countTd; n++) {
+                                $('#outputTable .t1 tr:last').append("<td>" + "</td>");
+                                $('#outputTable .t1 td:last').addClass(i + "." + n);
+                                $('#outputTable .t1 tr:last').addClass('' + i);
+                            }
+                        }
+                    } else {
+                        alert('enter a different value columns')
+                    }
+
+                } else {
+                    alert('enter another value for the lines')
+                }
+            });
+            ////create a random
+
+            $('#submit1').click(
+            funcStart =   function () {
+                var countTr = parseInt($("#tr1").val());
+                var countTd = parseInt($("#td1").val());
+                var countSpeed = parseInt($("#speed").val());
+               var table = $('.t1');
+               var trs = $('td', table);
+               var option = [];
+               trs.each(function () {
+                   option.push($('td', this));
+               });
+               $(function () {
+                   var rand = Math.floor(Math.random() * trs.length);
+                   var valueDel = trs[rand];
+                   $(trs[rand]).removeClass().addClass('mach').append('<img src="nameMach.jpg" width="40px" height="40px">');
+                   trs.splice($.inArray(valueDel, trs), 1);
+                   setTimeout(arguments.callee, 1000 / countSpeed);
+                   ///creat click
+                   $('img').click(function () {
+                       $(this).remove();
+                   })
+               });
+
+                function func() {
+                    if ($('img').length < 1) {
+                        var y =confirm('Victory! Start again?')
+                        if (y == true) {
+                            $('.t1').remove();
+                            funcCreate()
+                            funcStart()
+
+                        } else {
+                            $('.t1').remove()
+                        }
+                    } else {
+                        var y = confirm('Defeat! Start again?');
+                        if (y == true) {
+                            $('.t1').remove();
+                            funcCreate()
+                            funcStart()
+
+                        } else {
+                            $('.t1').remove()
+                        }
+                    }
+                }
+                setTimeout(func, ((countTd * countTr) * (1000 / countSpeed) + 1000/countSpeed));
+            })
+        });
+    </script>
+    <style>
+        .t1 td{
+            width:40px;
+            height: 40px;
+            border: 1px solid black;
+            padding: 0px;
+            margin: 0px;
+
+        }
+
+        .mach{
+            padding: 0px;
+            margin: 0px;
+            background: white ;
+         }
+
+    </style>
+</head>
+<body>
+<form id="frm">
+    <p>Enter the number of lines(min:1; max:10):<input type="text" name="tr1" id="tr1" size="10" > </p>
+    <p>Enter the number of columns(min:1; max:10):<input type="text" name="td1" id="td1" size="10" > </p>
+    <p align="center"><i>
+        <input type="button" value="create"  style="font-weight: 700; float:left" id="submit"></i><br>
+    </p>
+    <p>Enter the speed:<input type="text" name="speed" id="speed" size="10" > </p>
+    <p align="center"><i>
+        <input type="button" value="start"  style="font-weight: 700; float:left" id="submit1"></i>
+        <br><div  align="center" id="tbl1"></div>
+
+    </p>
+</form>
+<div id="outputTable">
+
+
+</div>
+</body>
+</html>
