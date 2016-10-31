@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="button" value="Multiplication" onclick="alert(calc.Mult())">
+<input type="button" value="Division" onclick="alert(calc.Divis())">
+<input type="button" value="Subtraction" onclick="alert(calc.Subtr())">
+<input type="button" value="Summation" onclick="alert(calc.sum())">
+
+
+<script>
+    function calc() {
+        this.read = function () {
+            this.a = prompt('enter the number a');
+            this.b = prompt('enter the number b');
+        }
+
+        this.sum = function () {
+            return this.a + this.b;
+        };
+        this.Subtr = function () {
+            return this.a - this.b;
+        };
+
+        this.Mult = function () {
+            return this.a * this.b;
+        };
+
+        this.Divis = function () {
+            return this.a / this.b;
+        };
+    }
+
+    var calc = new calc()
+    calc.read()
+
+
+</script>
+</body>
+</html>
