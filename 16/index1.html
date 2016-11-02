@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #table tr td {
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<table id="table">
+    <thead>
+    <tr>
+        <th id="id">id</th>
+        <th id="NAME">NAME</th>
+        <th id="AGE">AGE</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>12</td>
+        <td>John</td>
+        <td>34</td>
+    </tr>
+    <tr>
+        <td>54</td>
+        <td>Melissa</td>
+        <td>25</td>
+    </tr>
+    <tr>
+        <td>65</td>
+        <td>Eric</td>
+        <td>33</td>
+    </tr>
+    <tr>
+        <td>123</td>
+        <td>Michael</td>
+        <td>17</td>
+    </tr>
+    </tbody>
+</table>
+<script>
+
+    var tbody =  document.getElementById('table').getElementsByTagName('tbody')[0];
+    function compareAge(personA, personB) {
+        return personB.age - personA.age;
+    }
+
+    function compareid(personA, personB) {
+        return personB.id - personA.id;
+    }
+    var elem = document.getElementById('table');
+    function del(people) {
+        for (var i = 0; i < people.length; i++) {
+            elem.deleteRow(1)
+        }
+    }
+
+    var John = {
+        id:  elem.getElementsByTagName('tr')[1].getElementsByTagName('td')[0].innerText,
+        name: elem.getElementsByTagName('tr')[1].getElementsByTagName('td')[1].innerText,
+        age: elem.getElementsByTagName('tr')[1].getElementsByTagName('td')[2].innerText,
+    };
+
+    var Melissa = {
+        id:  elem.getElementsByTagName('tr')[2].getElementsByTagName('td')[0].innerText,
+        name: elem.getElementsByTagName('tr')[2].getElementsByTagName('td')[1].innerText,
+        age: elem.getElementsByTagName('tr')[2].getElementsByTagName('td')[2].innerText,
+    };
+
+    var Eric = {
+        id:  elem.getElementsByTagName('tr')[3].getElementsByTagName('td')[0].innerText,
+        name: elem.getElementsByTagName('tr')[3].getElementsByTagName('td')[1].innerText,
+        age: elem.getElementsByTagName('tr')[3].getElementsByTagName('td')[2].innerText,
+    };
+
+    var Michael = {
+        id:  elem.getElementsByTagName('tr')[4].getElementsByTagName('td')[0].innerText,
+        name: elem.getElementsByTagName('tr')[4].getElementsByTagName('td')[1].innerText,
+        age: elem.getElementsByTagName('tr')[4].getElementsByTagName('td')[2].innerText,
+    };
+
+    var people = [John, Melissa, Eric, Michael];
+
+    document.getElementById('id').onclick = function () {
+        var people = [John, Melissa, Eric, Michael];
+        people.sort(compareid);
+        for (var i = 0; i < people.length; i++) {
+            elem.deleteRow(1)
+        }
+        for (var i = 0; i < people.length; i++) {
+            var newRow=elem.insertRow(1);
+            var newCell = newRow.insertCell(0);
+            newCell.innerHTML= people[i].id;
+            var newCell = newRow.insertCell(1);
+            newCell.innerHTML= people[i].name;
+            var newCell = newRow.insertCell(2);
+            newCell.innerHTML= people[i].age;
+        }
+    };
+
+    document.getElementById('NAME').onclick = function () {
+        people.sort();
+        del(people)
+        for (var i = 0; i < people.length; i++) {
+            var newRow = elem.insertRow(1);
+            var newCell = newRow.insertCell(0);
+            newCell.innerHTML = people[i].id;
+            var newCell = newRow.insertCell(1);
+            newCell.innerHTML = people[i].name;
+            var newCell = newRow.insertCell(2);
+            newCell.innerHTML = people[i].age;
+        }
+    };
+
+    document.getElementById('AGE').onclick = function () {
+        people.sort(compareAge);
+        del(people)
+        for (var i = 0; i < people.length; i++) {
+            var newRow=elem.insertRow(1);
+            var newCell = newRow.insertCell(0);
+            newCell.innerHTML= people[i].id;
+            var newCell = newRow.insertCell(1);
+            newCell.innerHTML= people[i].name;
+            var newCell = newRow.insertCell(2);
+            newCell.innerHTML= people[i].age;
+        }
+    }
+</script>
+</body>
+</html>
