@@ -89,9 +89,7 @@
     document.getElementById('id').onclick = function () {
         var people = [John, Melissa, Eric, Michael];
         people.sort(compareid);
-        for (var i = 0; i < people.length; i++) {
-            elem.deleteRow(1)
-        }
+        del(people);
         for (var i = 0; i < people.length; i++) {
             var newRow=elem.insertRow(1);
             var newCell = newRow.insertCell(0);
@@ -105,7 +103,7 @@
 
     document.getElementById('NAME').onclick = function () {
         people.sort();
-        del(people)
+        del(people);
         for (var i = 0; i < people.length; i++) {
             var newRow = elem.insertRow(1);
             var newCell = newRow.insertCell(0);
@@ -119,7 +117,7 @@
 
     document.getElementById('AGE').onclick = function () {
         people.sort(compareAge);
-        del(people)
+        del(people);
         for (var i = 0; i < people.length; i++) {
             var newRow=elem.insertRow(1);
             var newCell = newRow.insertCell(0);
