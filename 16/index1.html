@@ -58,29 +58,35 @@
         }
     }
 
+    var peopleJohn = elem.getElementsByTagName('tr')[1];
+    var peopleMelissa = elem.getElementsByTagName('tr')[2];
+    var peopleEric = elem.getElementsByTagName('tr')[3];
+    var peopleMichael = elem.getElementsByTagName('tr')[4];
+
     var John = {
-        id:  elem.getElementsByTagName('tr')[1].getElementsByTagName('td')[0].innerText,
-        name: elem.getElementsByTagName('tr')[1].getElementsByTagName('td')[1].innerText,
-        age: elem.getElementsByTagName('tr')[1].getElementsByTagName('td')[2].innerText,
+        id:  peopleJohn.getElementsByTagName('td')[0].innerText,
+        name: peopleJohn.getElementsByTagName('td')[1].innerText,
+        age: peopleJohn.getElementsByTagName('td')[2].innerText
     };
 
     var Melissa = {
-        id:  elem.getElementsByTagName('tr')[2].getElementsByTagName('td')[0].innerText,
-        name: elem.getElementsByTagName('tr')[2].getElementsByTagName('td')[1].innerText,
-        age: elem.getElementsByTagName('tr')[2].getElementsByTagName('td')[2].innerText,
+        id:  peopleMelissa.getElementsByTagName('td')[0].innerText,
+        name: peopleMelissa.getElementsByTagName('td')[1].innerText,
+        age: peopleMelissa.getElementsByTagName('td')[2].innerText
     };
 
     var Eric = {
-        id:  elem.getElementsByTagName('tr')[3].getElementsByTagName('td')[0].innerText,
-        name: elem.getElementsByTagName('tr')[3].getElementsByTagName('td')[1].innerText,
-        age: elem.getElementsByTagName('tr')[3].getElementsByTagName('td')[2].innerText,
+        id:  peopleEric.getElementsByTagName('td')[0].innerText,
+        name: peopleEric.getElementsByTagName('td')[1].innerText,
+        age: peopleEric.getElementsByTagName('td')[2].innerText
     };
 
     var Michael = {
-        id:  elem.getElementsByTagName('tr')[4].getElementsByTagName('td')[0].innerText,
-        name: elem.getElementsByTagName('tr')[4].getElementsByTagName('td')[1].innerText,
-        age: elem.getElementsByTagName('tr')[4].getElementsByTagName('td')[2].innerText,
+        id:  peopleMichael.getElementsByTagName('td')[0].innerText,
+        name: peopleMichael.getElementsByTagName('td')[1].innerText,
+        age: peopleMichael.getElementsByTagName('td')[2].innerText
     };
+
 
     var people = [John, Melissa, Eric, Michael];
 
