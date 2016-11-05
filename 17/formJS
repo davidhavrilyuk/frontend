@@ -48,10 +48,8 @@
 ///validity
             }
         }
-
-       checkall()
-
         var person = new Person(Name, Login, Password, Email)
+        person.validity = checkall()
         console.log(person)
     }
 </script>
