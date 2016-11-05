@@ -28,13 +28,7 @@
         this._Password = Password;
         this._Email = Email;
     }
-function check() {
-    if (document.getElementById('checkName').checked) {
-
-    }
-
-}
-
+    
     document.getElementById('check').onclick = function () {
         var Name = document.getElementById('Name').value;
         var Login = document.getElementById('Login').value;
