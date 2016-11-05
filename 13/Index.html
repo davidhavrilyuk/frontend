@@ -52,15 +52,34 @@
                    ///creat click
                    $('img').click(function () {
                        $(this).remove();
+                    func()
                    })
                });
+
                 function func() {
                     if ($('img').length < 1) {
-                        var y =confirm('Victory! Start again?')
+                        var y =confirm('Victory! Start again?');
                         if (y == true) {
                             $('.t1').remove();
-                            funcCreate()
+                            countTr+=1;
+                            countTd+=1;
+                            funcCreate();
                             funcStart()
+
+                        } else {
+                            $('.t1').remove()
+                        }
+                    }
+                }
+
+                function func1() {
+                    if ($('img').length < 1) {
+                        var y =confirm('Victory! Start again?');
+                        if (y == true) {
+                            $('.t1').remove();
+                            funcCreate();
+                            funcStart()
+
                         } else {
                             $('.t1').remove()
                         }
@@ -68,14 +87,15 @@
                         var y = confirm('Defeat! Start again?');
                         if (y == true) {
                             $('.t1').remove();
-                            funcCreate()
+                            funcCreate();
                             funcStart()
+
                         } else {
                             $('.t1').remove()
                         }
                     }
                 }
-                setTimeout(func, ((countTd * countTr) * (1000 / countSpeed) + 1000/countSpeed));
+                 setInterval(func1, ((countTd * countTr) * (1000 / countSpeed) + 1000/countSpeed));
             })
         });
     </script>
