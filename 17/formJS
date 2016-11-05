@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <fieldset>
+        <legend> Регистрация </legend>
+        <p><label for="name">Name</label><input type="text" id="Name"></p>
+        <p><input type="checkbox" value="checking validity" id="checkName">checking validity</p>
+        <p><label for="login">Login</label><input type="text" id="Login"></p>
+        <p><input type="checkbox" value="checking validity" id="checkLogin">checking validity</p>
+        <p><label for="Password">Password</label><input type="text" id="Password"></p>
+        <p><input type="checkbox" value="checking validity" id="checkPassword">checking validity</p>
+        <p><label for="Email">Email</label><input type="text" id="Email"></p>
+        <p><input type="checkbox" value="checking validity" id="checkEmail">checking validity</p>
+        <p><input type="button" value="check" id="check"></p>
+        <p id="test"></p>
+    </fieldset>
+
+</form>
+<script>
+    function Person(Name, Login, Password, Email) {
+        this._Name = Name;
+        this._Login = Login;
+        this._Password = Password;
+        this._Email = Email;
+    }
+function check() {
+    if (document.getElementById('checkName').checked) {
+
+    }
+
+}
+
+    document.getElementById('check').onclick = function () {
+        var Name = document.getElementById('Name').value;
+        var Login = document.getElementById('Login').value;
+        var Password = document.getElementById('Password').value;
+        var Email = document.getElementById('Email').value;
+        function checkall() {
+            if (document.getElementById('checkName').checked) {
+///validity
+            }
+            if (document.getElementById('checkLogin').checked) {
+///validity
+            }
+            if (document.getElementById('checkPassword').checked) {
+///validity
+            }
+            if (document.getElementById('checkEmail').checked) {
+///validity
+            }
+        }
+
+       checkall()
+
+        var person = new Person(Name, Login, Password, Email)
+        console.log(person)
+    }
+</script>
+</body>
+</html>
