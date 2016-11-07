@@ -44,6 +44,10 @@
     </tbody>
 </table>
 <script>
+    
+    var elem = document.getElementById('table');
+    var people = [];
+    
     function compareAge(personA, personB) {
         return personB.age - personA.age;
     }
@@ -51,47 +55,33 @@
     function compareid(personA, personB) {
         return personB.id - personA.id;
     }
-    var elem = document.getElementById('table');
+    
     function del(people) {
         for (var i = 0; i < people.length; i++) {
             elem.deleteRow(1)
         }
     }
 
-    var peopleJohn = elem.getElementsByTagName('tr')[1];
-    var peopleMelissa = elem.getElementsByTagName('tr')[2];
-    var peopleEric = elem.getElementsByTagName('tr')[3];
-    var peopleMichael = elem.getElementsByTagName('tr')[4];
+    function Sort(id, name, age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
 
-    var John = {
-        id:  peopleJohn.getElementsByTagName('td')[0].innerText,
-        name: peopleJohn.getElementsByTagName('td')[1].innerText,
-        age: peopleJohn.getElementsByTagName('td')[2].innerText
-    };
+    function list() {
+        for (var i = 1; i < elem.getElementsByTagName('tr').length; i++) {
+            var elem1 = elem.getElementsByTagName('tr')[i];
+            var sort = new Sort();
+            sort.id =  elem1.getElementsByTagName('td')[0].innerText;
+            sort.name =  elem1.getElementsByTagName('td')[1].innerText;
+            sort.age =  elem1.getElementsByTagName('td')[2].innerText;
+            people.push(sort);
+        }
+    }
 
-    var Melissa = {
-        id:  peopleMelissa.getElementsByTagName('td')[0].innerText,
-        name: peopleMelissa.getElementsByTagName('td')[1].innerText,
-        age: peopleMelissa.getElementsByTagName('td')[2].innerText
-    };
-
-    var Eric = {
-        id:  peopleEric.getElementsByTagName('td')[0].innerText,
-        name: peopleEric.getElementsByTagName('td')[1].innerText,
-        age: peopleEric.getElementsByTagName('td')[2].innerText
-    };
-
-    var Michael = {
-        id:  peopleMichael.getElementsByTagName('td')[0].innerText,
-        name: peopleMichael.getElementsByTagName('td')[1].innerText,
-        age: peopleMichael.getElementsByTagName('td')[2].innerText
-    };
-
-
-    var people = [John, Melissa, Eric, Michael];
-
+    list();
+   
     document.getElementById('id').onclick = function () {
-        var people = [John, Melissa, Eric, Michael];
         people.sort(compareid);
         del(people);
         for (var i = 0; i < people.length; i++) {
