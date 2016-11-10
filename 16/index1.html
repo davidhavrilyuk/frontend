@@ -44,10 +44,9 @@
     </tbody>
 </table>
 <script>
-    
-    var elem = document.getElementById('table');
+     var elem = document.getElementById('table');
     var people = [];
-    
+
     function compareAge(personA, personB) {
         return personB.age - personA.age;
     }
@@ -55,7 +54,7 @@
     function compareid(personA, personB) {
         return personB.id - personA.id;
     }
-    
+
     function del(people) {
         for (var i = 0; i < people.length; i++) {
             elem.deleteRow(1)
@@ -80,7 +79,7 @@
     }
 
     list();
-   
+
     document.getElementById('id').onclick = function () {
         people.sort(compareid);
         del(people);
@@ -122,6 +121,7 @@
             newCell.innerHTML= people[i].age;
         }
     }
+
 </script>
 </body>
 </html>
