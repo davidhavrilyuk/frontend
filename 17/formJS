@@ -23,18 +23,22 @@
 </form>
 <script>
 
-    function Person(Name, Login, Password, Email) {
+     function Person(Name, Login, Password, Email) {
         this._Name = Name;
         this._Login = Login;
         this._Password = Password;
         this._Email = Email;
 
     }
-    
+
+
     Person.checkall = function () {
         ///validity
+        alert(person.Name)
     }
-    
+
+
+
     var all = []
 
     document.getElementById('check').onclick = function () {
@@ -45,6 +49,10 @@
         var person = new Person(Name, Login, Password, Email)
         console.log(person)
         all.push(person)
+        Person.checkall = function () {
+            ///validity
+            alert(person._Name)
+        }
         if (document.getElementById('checkName').checked) {
 ///validity
             Person.checkall()
@@ -61,8 +69,10 @@
 ///validity
             Person.checkall()
         }
-       console.log(all)
+        console.log(all)
+
     }
+
 
 </script>
 </body>
