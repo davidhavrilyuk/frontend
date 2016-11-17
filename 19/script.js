@@ -1,6 +1,3 @@
-/**
- * Created by aleksandrnikolaev on 17.11.16.
- */
 function Search(text, search) {
     this.text = text;
     this.sear = search;
