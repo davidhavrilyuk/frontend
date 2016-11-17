@@ -22,7 +22,7 @@ var prot = {
         var div = document.getElementById('div');
             div.innerHTML = '';
         if (val == ' ' && val1 == ' ' || val1 == '.' || val1 == ',') {
-          var  change = "<spam style='background: red' class='p1'>" + this.sear + "</spam>";
+            var  change = "<spam style='background: red' class='p1'>" + this.sear + "</spam>";
             var texte = document.createElement('p');
             var res = this.text.replace( new RegExp( this.sear, "g" ), change);
             texte.innerHTML = res;
