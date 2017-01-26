@@ -3,7 +3,7 @@ var Header = React.createClass({
     render: function () {
         return (
             <div>
-                <div className="typeahead">
+                <div className="page-header">
                     <h1>React JS bookmarks</h1>
                 </div>
                 <Menu/>
@@ -31,54 +31,36 @@ var Home = React.createClass({
     }
 });
 
-var Form = React.createClass({
-    controlId: function () {
-        var id = [];
-        if (localStorage.getItem('myId') == undefined) {
-            for (var i = 0; i < model.length; ++i) {
-                id.push(model[i].id)
-            }
 
-        }  else {
-            var saveId = localStorage.getItem('myId').split(',');
-            for (var j = 0; j < saveId.length; ++j) {
-                id.push(Number(saveId[j]))
-            }
-        }
-        localStorage.removeItem('myId');
-        id.sort(sort);
-        var thisId = id[id.length -1];
-        thisId +=1;
-        id.push(thisId);
-        localStorage.setItem("myId", id);
-        return thisId
-    },
+/*form*/
+var Form = React.createClass({
     addBookmark: function(e) {
         var name = ReactDOM.findDOMNode(this.refs.name).value,
             url = ReactDOM.findDOMNode(this.refs.url).value,
             desc = ReactDOM.findDOMNode(this.refs.desc).value;
 
-         var item = [{
-            id: this.controlId(),
+        var item = [{
+            id: parseInt(window.last) + 1,
             name: name,
             url: url,
             desc: desc
         }];
-        window.ee.emit('List.add', item);с
-    },
 
+        window.ee.emit('Bookmark.add', item);
+    },
     render: function() {
         return (
-            <div className="form form-actions">
-                <input type='text' className="form-control" placeholder='name' ref="name" />
+            <div className="form-group">
+                <input type='text' className="form-control" placeholder='name' ref="name"/>
                 <input type='text' className="form-control" placeholder='url' ref="url" />
                 <input type='text' className="form-control" placeholder='desc' ref="desc" />
-                <button className="btn btn-default" onClick={this.addBookmark}>Add Bookmark</button>
+                <button className="btn btn-primary" onClick={this.addBookmark}>Add Bookmark</button>
             </div>
         );
     }
 });
 
+/*table*/
 window.ee = new EventEmitter();
 
 var Table = React.createClass({
@@ -89,40 +71,46 @@ var Table = React.createClass({
     },
     componentDidMount: function() {
         var self = this;
-        window.ee.addListener('List.add', function(item) {
+        window.ee.addListener('Bookmark.add', function(item) {
             var newBookmark = self.state.bookmarks.concat(item);
             self.setState({bookmarks: newBookmark});
+            /**/
+            var last = newBookmark[newBookmark.length - 1].id;
+            window.last = last;
         });
-        window.ee.addListener('DelElem.add', function (item) {
-            for (var i = 0, newBookmark = self.state.bookmarks ; i < newBookmark.length; ++i) {
-             if (newBookmark[i].id == item) {
-                 newBookmark.splice(i, 1);
-             }
+
+        window.ee.addListener('Bookmark.delete', function(id) {
+            for(var i in self.state.bookmarks) {
+                if (self.state.bookmarks[i].id == id) {
+                    self.state.bookmarks.splice(i, 1);
+                }
             }
-            self.setState({bookmarks: newBookmark})
-
-
+            self.setState({bookmarks: self.state.bookmarks});
+            /**/
+            var last = self.state.bookmarks[self.state.bookmarks.length - 1].id;
+            window.last = last;
         });
-
+        /**/
+        var last = self.state.bookmarks[self.state.bookmarks.length - 1].id;
+        window.last = last;
     },
     componentWillUnmount: function() {
-        window.ee.removeAllListeners();
+        window.ee.removeListener('Bookmark.add');
+        window.ee.removeListener('Bookmark.delete');
     },
-
     render: function () {
         return (
-         
-            <table className="table table-bordered">
+            <table className="table">
                 <thead>
                 <tr className="headerClass">
                     <td>ID</td>
                     <td>Name</td>
                     <td>Url</td>
                     <td>Description</td>
-                    <td>action</td>
+                    <td>Action</td>
                 </tr>
                 </thead>
-                <List data={this.state.bookmarks}/>
+                <List data={this.state.bookmarks} />
             </table>
         )
     }
@@ -139,6 +127,7 @@ var List = React.createClass({
                 <Bookmark key={index} data={item} />
             )
         });
+
         return (
             <tbody>
             {row}
@@ -155,17 +144,14 @@ var Bookmark = React.createClass({
             desc: React.PropTypes.string.isRequired
         })
     },
-
-    delete: function (e) {
-        var DelElem = this.props.data.id;
-        window.ee.emit('DelElem.add', DelElem);
+    deleteBookmark: function(e) {
+        window.ee.emit('Bookmark.delete', this.props.data.id);
     },
     render: function() {
-        var props = this.props.data,
-            id = props.id,
-            name = props.name,
-            url = props.url,
-            desc = props.desc;
+        var id = this.props.data.id,
+            name = this.props.data.name,
+            url = this.props.data.url,
+            desc = this.props.data.desc;
 
         return (
             <tr>
@@ -173,13 +159,13 @@ var Bookmark = React.createClass({
                 <td>{name}</td>
                 <td>{url}</td>
                 <td>{desc}</td>
-                <td><button className="btn-danger" onClick={this.delete}>delete</button></td>
+                <td><button className="btn btn-danger" onClick={this.deleteBookmark}>Delete</button></td>
             </tr>
         )
     }
 });
 
-
+/*app*/
 var App = React.createClass({
     render: function() {
         return (
@@ -190,7 +176,6 @@ var App = React.createClass({
         );
     }
 });
-
 
 var {
     Router,
@@ -210,4 +195,3 @@ ReactDOM.render(
     </Router>,
     document.getElementById('home')
 );
-
