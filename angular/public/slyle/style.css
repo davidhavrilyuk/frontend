@@ -1,0 +1,11 @@
+.selected {
+    background: lightsteelblue;
+}
+
+.cl {
+    background: gainsboro;
+}
+
+.list {
+    list-style: none;
+}

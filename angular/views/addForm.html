@@ -1,0 +1,10 @@
+<div class="row">
+    <div id="bookmarks" ng-controller="addBCtrl" class="container-fluid">
+        <div class="form col-lg-2 ">
+            <input type="text" class="form-control" required ng-minlength="3" placeholder="name" ng-model="name" ng-pattern="/^[A-Z,a-z]/">
+            <input type="text" class="form-control" required ng-minlength="3" placeholder="url" ng-model="url" >
+            <input type="text" class="form-control" required ng-minlength="3" placeholder="desc" ng-model="desc">
+            <input type="button" class="btn btn-primary" value="add" ng-click="addBookmarks(name, url, desc)">
+        </div>
+    </div>
+</div>

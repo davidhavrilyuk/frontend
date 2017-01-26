@@ -1,0 +1,20 @@
+<table class="table" ng-controller="deleteBCtrl">
+    <thead>
+    <tr ng-class="{'cl':cls}" ng-mouseover="hovIn()" ng-mouseleave="hovOut()">
+        <td>id</td>
+        <td>name</td>
+        <td>url</td>
+        <td>disc</td>
+        <td>action</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="bookmark in list.bookmarks" ng-class="{'selected':hover}" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()" >
+        <td>{{bookmark.id}}</td>
+        <td>{{bookmark.name}}</td>
+        <td>{{bookmark.url | httpFilter }}</td>
+        <td>{{bookmark.desc}}</td>
+        <td><input type="button" value="delete"  class="btn btn-danger" ng-click="deleteBookmarks(bookmark.id)"></td>
+    </tr>
+    </tbody>
+</table>
